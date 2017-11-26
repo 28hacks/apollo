@@ -18,7 +18,8 @@ public class Poll {
     public Poll() {
     }
 
-    public Poll(String author, String description, boolean isExpired, List<Answer> answers, List<String> deviceTokens) {
+    public Poll(String author, String description, boolean isExpired, List<Answer> answers,
+                List<String> deviceTokens) {
         this.author = author;
         this.description = description;
         this.isExpired = isExpired;
