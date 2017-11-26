@@ -17,7 +17,7 @@ public interface MainContract {
          * @param view View to attach to this presenter
          * @param data Current state of data, will be given to next step
          */
-        void onAttachView(T view, PollBundle data);
+        void onAttachView(MainContract.View view, PollBundle data);
 
         Bundle onDetachView();
 

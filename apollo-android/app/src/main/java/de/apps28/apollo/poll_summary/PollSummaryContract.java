@@ -17,7 +17,7 @@ public interface PollSummaryContract {
         void onEndPollButtonClicked();
     }
 
-    interface View{
+    interface View  extends  MainContract.View{
         void showEndPollButton();
 
         void setQuestion(String questionText);

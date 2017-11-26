@@ -18,7 +18,7 @@ public interface VotePollContract {
         void onVoteButtonClicked();
     }
 
-    interface View{
+    interface View  extends  MainContract.View{
         void setQuestion(String questionText);
 
         void setAnswers(List<Answer> answerList); //TODO use list of Answer objcts
