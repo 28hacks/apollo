@@ -65,17 +65,22 @@ public class MainActivity extends AppCompatActivity {
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
 
-        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
-        auth.signInWithCredential(credential)
-                .addOnCompleteListener(this, task -> {
-                    if (task.isSuccessful()) {
-                        start();
-                    } else {
-                        // If sign in fails, display a message to the user.
-                        Toast.makeText(this, "Authentication failed.",
-                                Toast.LENGTH_LONG).show();
-                    }
-                });
+
+        try {
+            AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
+            auth.signInWithCredential(credential)
+                    .addOnCompleteListener(this, task -> {
+                        if (task.isSuccessful()) {
+                            start();
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Toast.makeText(this, "Authentication failed.",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    });
+        }catch (Exception e) {
+            start();
+        }
     }
 
 
