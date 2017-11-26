@@ -33,6 +33,10 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />
+
+        <activity android:name=".create_poll.CreatePollActivity"/>
+        <activity android:name=".poll_summary.PollSummaryActivity"/>
+        <activity android:name=".vote_poll.VotePollActivity"/>
     </application>
 
 </manifest>

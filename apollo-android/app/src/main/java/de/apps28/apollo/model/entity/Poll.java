@@ -1,5 +1,8 @@
 package de.apps28.apollo.model.entity;
 
+import com.google.firebase.firestore.Exclude;
+import com.google.firebase.firestore.IgnoreExtraProperties;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,8 +10,11 @@ import java.util.List;
  * @author Jonas Gerdes <dev@jonasgerdes.com>
  * @since 26-Nov-17
  */
-
+@IgnoreExtraProperties
 public class Poll {
+    @Exclude
+    public String id;
+
     String author;
     String description;
     boolean isExpired = false;
@@ -43,4 +49,11 @@ public class Poll {
         return isExpired;
     }
 
+    public List<String> getDeviceTokens() {
+        return deviceTokens;
+    }
+
+    public String getId() {
+        return id;
+    }
 }

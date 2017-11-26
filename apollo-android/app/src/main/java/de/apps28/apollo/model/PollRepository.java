@@ -4,8 +4,11 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import de.apps28.apollo.model.entity.Poll;
+import de.apps28.apollo.model.entity.Vote;
+import io.reactivex.Completable;
 import io.reactivex.Observable;
 import io.reactivex.Single;
 
@@ -30,7 +33,17 @@ public class PollRepository {
                 .add(poll)
                 .addOnSuccessListener(documentReference -> emitter.onSuccess(documentReference.getId()))
                 .addOnFailureListener(emitter::onError));
+    }
 
+    public Completable votePoll(final Poll poll, int answerId) {
+        poll.getAnswers().get(answerId).getVotes().add(new Vote("Test"));
+        poll.getDeviceTokens().add(FirebaseInstanceId.getInstance().getToken());
+
+        return Completable.create(emitter -> firestore.collection(COLLECTION_POLLS)
+                .document(poll.getId())
+                .update("deviceTokens", poll.getDeviceTokens())
+                .addOnSuccessListener(documentReference -> emitter.onComplete())
+                .addOnFailureListener(emitter::onError));
     }
 
     public Observable<Poll> getPoll(String id) {
