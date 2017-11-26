@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import java.util.List;
 
+import de.apps28.apollo.model.entity.Answer;
 import de.apps28.apollo.model.entity.Poll;
 
 /**
@@ -22,7 +23,7 @@ public class PollSummaryActivity extends Activity implements PollSummaryContract
     }
 
     @Override
-    public void setAnswers(List<Poll.Answer> answerList) {
+    public void setAnswers(List<Answer> answerList) {
 
     }
 

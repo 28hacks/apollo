@@ -3,6 +3,7 @@ package de.apps28.apollo.vote_poll;
 import java.util.List;
 
 import de.apps28.apollo.MainContract;
+import de.apps28.apollo.model.entity.Answer;
 import de.apps28.apollo.model.entity.Poll;
 
 /**
@@ -20,7 +21,7 @@ public interface VotePollContract {
     interface View{
         void setQuestion(String questionText);
 
-        void setAnswers(List<Poll.Answer> answerList); //TODO use list of Answer objcts
+        void setAnswers(List<Answer> answerList); //TODO use list of Answer objcts
 
         void showErrorMessage(int stringRessourceId);
 
