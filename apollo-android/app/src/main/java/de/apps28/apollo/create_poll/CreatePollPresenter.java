@@ -2,14 +2,25 @@ package de.apps28.apollo.create_poll;
 
 import android.os.Bundle;
 
+import java.util.ArrayList;
+
 import de.apps28.apollo.MainContract;
 import de.apps28.apollo.model.PollBundle;
+import de.apps28.apollo.model.entity.Answer;
 
 /**
  * Created by dominic on 26.11.17.
  */
 
 public class CreatePollPresenter implements CreatePollContract.Presenter {
+
+    CreatePollContract.View mView;
+
+    @Override
+    public void onAttachView(MainContract.View view, PollBundle data) {
+        mView =(CreatePollContract.View) view;
+    }
+
     @Override
     public void onQuestionTypedIn(String question) {
 
@@ -32,16 +43,11 @@ public class CreatePollPresenter implements CreatePollContract.Presenter {
 
     @Override
     public void onAddAnswerButtonClicked() {
-
+        mView.addAnswer(new Answer("", null));
     }
 
     @Override
     public void onDeleteAnswerButtonClicked(int answerIndex) {
-
-    }
-
-    @Override
-    public void onAttachView(MainContract.View view, PollBundle data) {
 
     }
 

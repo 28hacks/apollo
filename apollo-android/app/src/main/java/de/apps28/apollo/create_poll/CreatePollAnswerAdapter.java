@@ -81,4 +81,9 @@ public class CreatePollAnswerAdapter extends RecyclerView.Adapter<RecyclerView.V
     public void deleteAnswer(int position){
         mAnswers.remove(position);
     }
+
+    public void addAnswer(Answer answer){
+        mAnswers.add(answer);
+        this.notifyDataSetChanged();
+    }
 }
