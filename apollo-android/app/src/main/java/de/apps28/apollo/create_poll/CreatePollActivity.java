@@ -2,8 +2,14 @@ package de.apps28.apollo.create_poll;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.annotation.BoolRes;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Pair;
+import android.widget.EditText;
 import android.widget.ImageButton;
 
 import butterknife.BindView;
@@ -23,6 +29,9 @@ public class CreatePollActivity extends Activity implements CreatePollContract.V
     @BindView(R.id.add_answer_button)
     ImageButton mAddAnswerButton;
 
+    @BindView(R.id.question_editText)
+    EditText mQuestionEditText;
+
     CreatePollAnswerAdapter mListAdapter;
 
     CreatePollContract.Presenter mPresenter;
@@ -39,12 +48,33 @@ public class CreatePollActivity extends Activity implements CreatePollContract.V
         mPresenter.onAttachView(this, null);
 
         mListAdapter = new CreatePollAnswerAdapter(mAnswerRecyclerView);
+        mAnswerRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mAnswerRecyclerView.setAdapter(mListAdapter);
+
+
         mListAdapter.deletedAnswer().subscribe(integer
                 -> mPresenter.onDeleteAnswerButtonClicked(integer));
         mListAdapter.changedAnswer().subscribe(integerStringPair
                 -> mPresenter.onAnswerTypedIn(integerStringPair.first, integerStringPair.second));
 
         mAddAnswerButton.setOnClickListener(v -> mPresenter.onAddAnswerButtonClicked());
+
+        mQuestionEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                mPresenter.onQuestionTypedIn(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
     @Override

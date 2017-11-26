@@ -27,4 +27,8 @@ public class Answer {
     public List<Vote> getVotes() {
         return votes;
     }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 }

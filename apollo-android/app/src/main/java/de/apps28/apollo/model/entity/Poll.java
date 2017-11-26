@@ -16,11 +16,11 @@ public class Poll {
     public String id;
 
     String author;
+
     String description;
     boolean isExpired = false;
     List<Answer> answers = new ArrayList<>();
     List<String> deviceTokens = new ArrayList<>();
-
     public Poll() {
     }
 
@@ -55,5 +55,29 @@ public class Poll {
 
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setExpired(boolean expired) {
+        isExpired = expired;
+    }
+
+    public void setAnswers(List<Answer> answers) {
+        this.answers = answers;
+    }
+
+    public void setDeviceTokens(List<String> deviceTokens) {
+        this.deviceTokens = deviceTokens;
     }
 }
