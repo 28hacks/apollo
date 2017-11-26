@@ -16,6 +16,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
 }
 
 dependencies {
@@ -34,6 +38,10 @@ dependencies {
     //firebase
     compile 'com.google.firebase:firebase-firestore:11.6.0'
     compile 'com.google.firebase:firebase-core:11.6.0'
+
+    //rx
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.6'
 }
 
 

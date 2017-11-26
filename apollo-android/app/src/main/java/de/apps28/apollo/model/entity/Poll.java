@@ -1,6 +1,6 @@
 package de.apps28.apollo.model.entity;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,58 +9,38 @@ import java.util.List;
  */
 
 public class Poll {
-
     String author;
-    Question question;
+    String description;
+    boolean isExpired = false;
+    List<Answer> answers = new ArrayList<>();
+    List<String> deviceTokens = new ArrayList<>();
 
-    public Poll(String author, Question question) {
+    public Poll() {
+    }
+
+    public Poll(String author, String description, boolean isExpired, List<Answer> answers,
+                List<String> deviceTokens) {
         this.author = author;
-        this.question = question;
+        this.description = description;
+        this.isExpired = isExpired;
+        this.answers = answers;
+        this.deviceTokens = deviceTokens;
     }
 
-    public static class Question {
-        String description;
-        List<Answer> answers;
-
-        public Question(String description, Answer... answers) {
-            this.description = description;
-            this.answers = Arrays.asList(answers);
-        }
+    public String getAuthor() {
+        return author;
     }
 
-    public static class Answer {
-        public String getTitle() {
-            return title;
-        }
-
-        public void setTitle(String title) {
-            this.title = title;
-        }
-
-        String title;
-
-        public List<Vote> getVotes() {
-            return votes;
-        }
-
-        public void setVotes(List<Vote> votes) {
-            this.votes = votes;
-        }
-
-        List<Vote> votes;
-
-        public Answer(String title, Vote... votes) {
-            this.title = title;
-            this.votes = Arrays.asList(votes);
-        }
+    public String getDescription() {
+        return description;
     }
 
-    public static class Vote {
-        String user;
+    public List<Answer> getAnswers() {
+        return answers;
+    }
 
-        public Vote(String user) {
-            this.user = user;
-        }
+    public boolean isExpired() {
+        return isExpired;
     }
 
 }
