@@ -7,6 +7,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.apps28.apollo.R;
+import de.apps28.apollo.model.entity.Answer;
 import de.apps28.apollo.model.entity.Poll;
 
 /**
@@ -24,7 +25,7 @@ public class VotePollAnswerViewHolder extends RecyclerView.ViewHolder{
         ButterKnife.bind(this, itemView);
     }
 
-    public void bind(Poll.Answer answer){
+    public void bind(Answer answer){
         mAnswerText.setText(answer.getTitle());
     }
 }

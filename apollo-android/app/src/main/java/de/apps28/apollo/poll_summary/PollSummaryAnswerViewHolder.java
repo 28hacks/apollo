@@ -9,8 +9,8 @@ import org.w3c.dom.Text;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.apps28.apollo.R;
+import de.apps28.apollo.model.entity.Answer;
 import de.apps28.apollo.model.entity.Poll;
-import de.apps28.apollo.model.entity.Poll.Answer;
 
 /**
  * Created by dominic on 26.11.17.
