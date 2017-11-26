@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.apps28.apollo.R;
 import de.apps28.apollo.model.entity.Answer;
 import io.reactivex.Observable;
 import io.reactivex.subjects.BehaviorSubject;
@@ -33,8 +34,10 @@ public class CreatePollAnswerAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(viewType, parent, false);
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        View view = layoutInflater.inflate(R.layout.item_answer_create, parent, false);
         RecyclerView.ViewHolder holder = new CreatePoiAnswerViewHolder(view);
+
         return holder;
     }
 
@@ -80,6 +83,7 @@ public class CreatePollAnswerAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     public void deleteAnswer(int position){
         mAnswers.remove(position);
+        this.notifyDataSetChanged();
     }
 
     public void addAnswer(Answer answer){
