@@ -29,7 +29,24 @@ public class Poll {
     }
 
     public static class Answer {
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
         String title;
+
+        public List<Vote> getVotes() {
+            return votes;
+        }
+
+        public void setVotes(List<Vote> votes) {
+            this.votes = votes;
+        }
+
         List<Vote> votes;
 
         public Answer(String title, Vote... votes) {
