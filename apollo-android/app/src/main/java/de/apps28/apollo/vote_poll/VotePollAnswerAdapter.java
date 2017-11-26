@@ -7,7 +7,7 @@ import android.view.ViewGroup;
  * Created by dominic on 26.11.17.
  */
 
-public class SummaryPollAnswerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class VotePollAnswerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

@@ -22,7 +22,7 @@ public interface CreatePollContract {
         void onDeleteAnswerButtonClicked(int answerIndex);
     }
 
-    interface View {
+    interface View  extends  MainContract.View{
         void addAnswers();
 
         void deleteAnswer(int answerIndedx);

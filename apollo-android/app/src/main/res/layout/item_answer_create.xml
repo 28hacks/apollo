@@ -7,12 +7,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/answer_text"
+    <EditText
+        android:id="@+id/answer_text_edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         tools:text="Answer XYZ"
+        android:hint="Type in an answer..."
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="37dp" />
 
