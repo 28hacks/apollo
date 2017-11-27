@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import de.apps28.apollo.create_poll.CreatePollActivity;
 
@@ -36,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         googleSignInClient = GoogleSignIn.getClient(this, gso);
         start();
+
+        getTestToken();
     }
 
 
@@ -89,6 +92,17 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(this, CreatePollActivity.class));
         } else {
             login();
+        }
+    }
+
+    public void getTestToken() {
+        try {
+            String token = FirebaseInstanceId.getInstance().getToken();
+
+            Log.i(TAG, "Firebase Registration Token: " + token);
+
+        }catch (Exception e) {
+            Log.d(TAG, "Failed to complete token refresh", e);
         }
     }
 }

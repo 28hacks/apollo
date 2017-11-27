@@ -29,12 +29,21 @@ import android.util.Log;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+import java.util.Map;
+
 import de.apps28.apollo.MainActivity;
 import de.apps28.apollo.R;
+import de.apps28.apollo.poll_summary.PollSummaryActivity;
 
-public class MyFirebaseMessagingService extends FirebaseMessagingService {
+public class PollExpiredMessagingService extends FirebaseMessagingService {
 
     private static final String TAG = "MyFirebaseMsgService";
+
+    private static final String NOTIFICATION_DATA_EXTRA_TITLE = "title";
+
+    private static final String NOTIFICATION_DATA_EXTRA_BODY= "body";
+
+    private static final String NOTIFICATION_DATA_EXTRA_POLL_ID = "pollId";
 
     /**
      * Called when message is received.
@@ -61,6 +70,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         // Check if message contains a data payload.
         if (remoteMessage.getData().size() > 0) {
             Log.d(TAG, "Message data payload: " + remoteMessage.getData());
+            sendNotification(remoteMessage.getData());
 
         }
 
@@ -68,8 +78,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         if (remoteMessage.getNotification() != null) {
             Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
         }
-
-        sendNotification(remoteMessage.getNotification());
         // Also if you intend on generating your own notifications as a result of a received FCM
         // message, here is where that should be initiated. See sendNotification method below.
     }
@@ -85,22 +93,22 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     /**
      * Create and show a simple notification containing the received FCM message.
      *
-     * @param notification FCM message body received.
+     * @param notificationMap FCM message body received.
      */
-    private void sendNotification(RemoteMessage.Notification notification) {
+    private void sendNotification(Map<String, String> notificationMap) {
 
-        Intent notificationIntent = new Intent(this, MainActivity.class);
-        notificationIntent.setData(notification.getLink());
+        Intent notificationIntent = PollSummaryActivity.getIntent(this, notificationMap.get(NOTIFICATION_DATA_EXTRA_POLL_ID));
         notificationIntent.addFlags(Intent.FLAG_ACTIVITY_TASK_ON_HOME);
         notificationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
         PendingIntent pendingIntent = PendingIntent.getActivity(getBaseContext(), 1,       notificationIntent, 0);
 
         Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(this, "1")
                 .setSmallIcon(R.drawable.ic_stat_name)
-                .setContentTitle(notification.getTitle())
-                .setContentText(notification.getBody())
+                .setContentTitle(notificationMap.get(NOTIFICATION_DATA_EXTRA_TITLE))
+                .setContentText(notificationMap.get(NOTIFICATION_DATA_EXTRA_BODY))
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
                 .setContentIntent(pendingIntent);

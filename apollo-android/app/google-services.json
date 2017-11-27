@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "118902929076-ms3viu7o924bchk0bodsjmv8n89egqgp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "de.apps28.apollo",
+            "certificate_hash": "db1d147eb812dabde2d731b399f5f6fc80755dbf"
+          }
+        },
+        {
           "client_id": "118902929076-26c6b4t74gbr1scm0omvgnjm9fqn7b46.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

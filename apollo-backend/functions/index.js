@@ -24,24 +24,20 @@ exports.sendNotificationIfPollIsExpired = functions.firestore
 	.onUpdate(event => {
 		var newValue = event.data.data();
 	
-		console.log('Poll changed pollId:', event.eventId);
-		console.log('Poll changed description:', newValue.description);
-
 		if (newValue.isExpired) {
-			console.log('Poll is expired:', newValue.description);
+			console.log('Poll isExpired: pollId=', event.eventId, ' poll description=', newValue.description);
 			// Notification details.
-			var notification_title = 'The Poll ended!';
+			var notification_title = 'Oh a poll ended!';
 			var notification_body = 'See the Results of: '+newValue.description;
-			var notification_click_action = 'https://28apps.de/apollo/'+event.eventId;
+			var notification_pollId = event.eventId;
 			
-			console.log('Notification title:', notification_title,'Notification body:', notification_body,'Notification click Action:', notification_click_action);
+			console.log('Notification: title=', notification_title,' Notification body=', notification_body,' Notification poll Id=', notification_pollId);
 			
 			const payload = {
-				notification: {
+				data: {
 					title: notification_title,
 					body: notification_body,
-					click_action : notification_click_action
-					//,icon: follower.photoURL
+					pollId : notification_pollId
 				}
 			};
 
